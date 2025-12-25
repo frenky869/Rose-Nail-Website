@@ -84,12 +84,12 @@
 
         <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12 relative z-10">
             <div class="md:w-1/2 text-center md:text-left fade-in">
-                <span class="text-brand-rose font-bold tracking-widest text-sm uppercase mb-4 block">Premium Nail Care</span>
+                <span class="text-brand-rose font-bold tracking-widest text-sm uppercase mb-4 block">Premium Beauty Services</span>
                 <h1 class="text-5xl md:text-7xl font-serif font-bold text-gray-900 mb-6 leading-tight">
-                    Artistry at Your <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-rose to-pink-400">Fingertips</span>
+                    Beauty at Your <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-rose to-pink-400">Fingertips</span>
                 </h1>
                 <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-md mx-auto md:mx-0">
-                    Experience top-tier manicures, pedicures, and custom nail art in a relaxing environment. Your hands deserve the best.
+                    Experience top-tier manicures, hair styling, lashes, and custom nail art in a relaxing environment.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                     <a href="#book" class="bg-gray-900 text-white px-8 py-4 rounded-none font-bold hover:bg-gray-800 transition-colors uppercase tracking-wider">
@@ -117,67 +117,142 @@
     <section id="services" class="py-24 bg-white">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-serif font-bold text-gray-900 mb-4">Our Services</h2>
+                <h2 class="text-4xl font-serif font-bold text-gray-900 mb-4">Our Menu</h2>
                 <div class="w-16 h-1 bg-brand-rose mx-auto"></div>
-                <p class="mt-4 text-gray-500">Select a service to start your booking.</p>
+                <p class="mt-4 text-gray-500">Nails, Hair, and Lashes.</p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="group bg-brand-pink/10 hover:bg-brand-pink/30 p-8 rounded-2xl transition-colors cursor-pointer border border-transparent hover:border-brand-pink" onclick="selectService('Gel Manicure', 2500)">
+                <!-- Service: Manicure -->
+                <div class="group bg-brand-pink/10 hover:bg-brand-pink/30 p-8 rounded-2xl transition-colors cursor-pointer border border-transparent hover:border-brand-pink" onclick="selectService('Manicure', 350)">
                     <div class="h-12 w-12 bg-brand-rose text-white rounded-full flex items-center justify-center mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg>
+                        <span class="font-bold text-lg">01</span>
                     </div>
                     <div class="flex justify-between items-start mb-2">
-                        <h3 class="text-xl font-bold font-serif">Gel Manicure</h3>
-                        <span class="text-brand-rose font-bold">KES 500</span>
+                        <h3 class="text-xl font-bold font-serif">Manicure</h3>
+                        <span class="text-brand-rose font-bold">KES 350</span>
                     </div>
-                    <p class="text-gray-600 text-sm mb-4">Cuticle care, shaping, and long-lasting gel polish application.</p>
+                    <p class="text-gray-600 text-sm mb-4">Classic nail shaping, cuticle care, and cleaning.</p>
                     <button class="text-sm font-bold uppercase tracking-wider text-gray-900 group-hover:text-brand-rose transition-colors flex items-center">
                         Book This <span class="ml-2">&rarr;</span>
                     </button>
                 </div>
 
-                <!-- Service 2 -->
-                <div class="group bg-brand-pink/10 hover:bg-brand-pink/30 p-8 rounded-2xl transition-colors cursor-pointer border border-transparent hover:border-brand-pink" onclick="selectService('Acrylic Full Set', 4000)">
+                <!-- Service: Pedicure -->
+                <div class="group bg-brand-pink/10 hover:bg-brand-pink/30 p-8 rounded-2xl transition-colors cursor-pointer border border-transparent hover:border-brand-pink" onclick="selectService('Pedicure', 500)">
                     <div class="h-12 w-12 bg-brand-rose text-white rounded-full flex items-center justify-center mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" /></svg>
+                        <span class="font-bold text-lg">02</span>
+                    </div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold font-serif">Pedicure</h3>
+                        <span class="text-brand-rose font-bold">KES 500</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Relaxing foot soak, scrub, nail trimming, and cleaning.</p>
+                    <button class="text-sm font-bold uppercase tracking-wider text-gray-900 group-hover:text-brand-rose transition-colors flex items-center">
+                        Book This <span class="ml-2">&rarr;</span>
+                    </button>
+                </div>
+
+                <!-- Service 1: Plain Gel -->
+                <div class="group bg-brand-pink/10 hover:bg-brand-pink/30 p-8 rounded-2xl transition-colors cursor-pointer border border-transparent hover:border-brand-pink" onclick="selectService('Plain Gel', 350)">
+                    <div class="h-12 w-12 bg-brand-rose text-white rounded-full flex items-center justify-center mb-6">
+                        <span class="font-bold text-lg">03</span>
+                    </div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold font-serif">Plain Gel</h3>
+                        <span class="text-brand-rose font-bold">KES 350</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Simple, elegant gel polish application.</p>
+                    <button class="text-sm font-bold uppercase tracking-wider text-gray-900 group-hover:text-brand-rose transition-colors flex items-center">
+                        Book This <span class="ml-2">&rarr;</span>
+                    </button>
+                </div>
+
+                <!-- Service 2: Nail Gel -->
+                <div class="group bg-brand-pink/10 hover:bg-brand-pink/30 p-8 rounded-2xl transition-colors cursor-pointer border border-transparent hover:border-brand-pink" onclick="selectService('Nail Gel', 600)">
+                    <div class="h-12 w-12 bg-brand-rose text-white rounded-full flex items-center justify-center mb-6">
+                        <span class="font-bold text-lg">04</span>
+                    </div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold font-serif">Nail Gel</h3>
+                        <span class="text-brand-rose font-bold">KES 600</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Long-lasting gel application.</p>
+                    <button class="text-sm font-bold uppercase tracking-wider text-gray-900 group-hover:text-brand-rose transition-colors flex items-center">
+                        Book This <span class="ml-2">&rarr;</span>
+                    </button>
+                </div>
+
+                <!-- Service 3: Builder Gel & Tips -->
+                <div class="group bg-brand-pink/10 hover:bg-brand-pink/30 p-8 rounded-2xl transition-colors cursor-pointer border border-transparent hover:border-brand-pink" onclick="selectService('Builder Gel & Tips', 800)">
+                    <div class="h-12 w-12 bg-brand-rose text-white rounded-full flex items-center justify-center mb-6">
+                        <span class="font-bold text-lg">05</span>
+                    </div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold font-serif">Builder Gel & Tips</h3>
+                        <span class="text-brand-rose font-bold">KES 800</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Stronger overlay with tips for added length.</p>
+                    <button class="text-sm font-bold uppercase tracking-wider text-gray-900 group-hover:text-brand-rose transition-colors flex items-center">
+                        Book This <span class="ml-2">&rarr;</span>
+                    </button>
+                </div>
+
+                <!-- Service 4: Gum Gel -->
+                <div class="group bg-brand-pink/10 hover:bg-brand-pink/30 p-8 rounded-2xl transition-colors cursor-pointer border border-transparent hover:border-brand-pink" onclick="selectService('Gum Gel', 1800)">
+                    <div class="h-12 w-12 bg-brand-rose text-white rounded-full flex items-center justify-center mb-6">
+                        <span class="font-bold text-lg">06</span>
+                    </div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold font-serif">Gum Gel (Polygel)</h3>
+                        <span class="text-brand-rose font-bold">KES 1,800</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Hybrid gel for lightweight, durable extensions.</p>
+                    <button class="text-sm font-bold uppercase tracking-wider text-gray-900 group-hover:text-brand-rose transition-colors flex items-center">
+                        Book This <span class="ml-2">&rarr;</span>
+                    </button>
+                </div>
+
+                <!-- Service 5: Acrylic Full Set -->
+                <div class="group bg-brand-pink/10 hover:bg-brand-pink/30 p-8 rounded-2xl transition-colors cursor-pointer border border-transparent hover:border-brand-pink" onclick="selectService('Acrylic Full Set', 2500)">
+                    <div class="h-12 w-12 bg-brand-rose text-white rounded-full flex items-center justify-center mb-6">
+                        <span class="font-bold text-lg">07</span>
                     </div>
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="text-xl font-bold font-serif">Acrylic Full Set</h3>
-                        <span class="text-brand-rose font-bold">KES 400</span>
+                        <span class="text-brand-rose font-bold">KES 2,500</span>
                     </div>
-                    <p class="text-gray-600 text-sm mb-4">Extensions using high-quality acrylic powder for length and strength.</p>
+                    <p class="text-gray-600 text-sm mb-4">Classic acrylic extensions for maximum length and strength.</p>
                     <button class="text-sm font-bold uppercase tracking-wider text-gray-900 group-hover:text-brand-rose transition-colors flex items-center">
                         Book This <span class="ml-2">&rarr;</span>
                     </button>
                 </div>
 
-                <!-- Service 3 -->
-                <div class="group bg-brand-pink/10 hover:bg-brand-pink/30 p-8 rounded-2xl transition-colors cursor-pointer border border-transparent hover:border-brand-pink" onclick="selectService('Luxury Pedicure', 3000)">
+                <!-- Service 6: Additional Art -->
+                <div class="group bg-brand-pink/10 hover:bg-brand-pink/30 p-8 rounded-2xl transition-colors cursor-pointer border border-transparent hover:border-brand-pink" onclick="selectService('Nail Art (Per Nail)', 50)">
                     <div class="h-12 w-12 bg-brand-rose text-white rounded-full flex items-center justify-center mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span class="font-bold text-lg">08</span>
                     </div>
                     <div class="flex justify-between items-start mb-2">
-                        <h3 class="text-xl font-bold font-serif">Luxury Pedicure</h3>
-                        <span class="text-brand-rose font-bold">KES 300</span>
+                        <h3 class="text-xl font-bold font-serif">Additional Art</h3>
+                        <span class="text-brand-rose font-bold">KES 50 /nail</span>
                     </div>
-                    <p class="text-gray-600 text-sm mb-4">Soak, scrub, massage, and polish. A complete treat for your feet.</p>
+                    <p class="text-gray-600 text-sm mb-4">Custom designs, stones, and creative art per finger.</p>
                     <button class="text-sm font-bold uppercase tracking-wider text-gray-900 group-hover:text-brand-rose transition-colors flex items-center">
                         Book This <span class="ml-2">&rarr;</span>
                     </button>
                 </div>
 
-                <!-- Service 4 -->
-                <div class="group bg-brand-pink/10 hover:bg-brand-pink/30 p-8 rounded-2xl transition-colors cursor-pointer border border-transparent hover:border-brand-pink" onclick="selectService('Nail Art (Per Nail)', 200)">
+                <!-- Service 7: Hair & Lashes -->
+                <div class="group bg-brand-pink/10 hover:bg-brand-pink/30 p-8 rounded-2xl transition-colors cursor-pointer border border-transparent hover:border-brand-pink" onclick="selectService('Hair/Lashes', 0)">
                     <div class="h-12 w-12 bg-brand-rose text-white rounded-full flex items-center justify-center mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                        <span class="font-bold text-lg">09</span>
                     </div>
                     <div class="flex justify-between items-start mb-2">
-                        <h3 class="text-xl font-bold font-serif">Nail Art Add-on</h3>
-                        <span class="text-brand-rose font-bold">KES 200+</span>
+                        <h3 class="text-xl font-bold font-serif">Hair & Lashes</h3>
+                        <span class="text-brand-rose font-bold text-sm">Inquire</span>
                     </div>
-                    <p class="text-gray-600 text-sm mb-4">Custom designs, chrome powder, gems, or french tips.</p>
+                    <p class="text-gray-600 text-sm mb-4">Professional hair styling and eyelash extensions.</p>
                     <button class="text-sm font-bold uppercase tracking-wider text-gray-900 group-hover:text-brand-rose transition-colors flex items-center">
                         Book This <span class="ml-2">&rarr;</span>
                     </button>
@@ -197,23 +272,13 @@
                 <a href="https://instagram.com" target="_blank" class="hidden md:inline-block border-b border-brand-rose pb-1 hover:text-brand-rose transition-colors">View Instagram</a>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-[600px]">
-                <div class="col-span-2 row-span-2 relative group overflow-hidden rounded-lg">
-                    <img src="https://image.pollinations.ai/prompt/close%20up%20photo%20of%20elegant%20ombre%20nails%20pink%20and%20white%20salon?width=800&height=800&nologo=true" alt="Work 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                        <p class="font-serif text-xl">Ombre Acrylics</p>
-                    </div>
-                </div>
-                <div class="relative group overflow-hidden rounded-lg">
-                    <img src="https://image.pollinations.ai/prompt/close%20up%20photo%20of%20red%20gel%20polish%20nails%20glossy?width=400&height=400&nologo=true" alt="Work 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                </div>
-                <div class="relative group overflow-hidden rounded-lg">
-                    <img src="https://image.pollinations.ai/prompt/close%20up%20photo%20of%20nude%20nails%20with%20minimalist%20black%20nail%20art?width=400&height=400&nologo=true" alt="Work 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                </div>
-                <div class="col-span-2 relative group overflow-hidden rounded-lg">
-                    <img src="https://image.pollinations.ai/prompt/close%20up%20photo%20of%20luxury%20pedicure%20with%20white%20polish%20and%20flower%20petals%20in%20water?width=800&height=400&nologo=true" alt="Work 4" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                        <p class="font-serif text-xl">Spa Pedicure</p>
+            <!-- Single Image Layout -->
+            <div class="relative group overflow-hidden rounded-lg shadow-2xl max-w-4xl mx-auto h-[600px]">
+                <img src=" "width=1200&height=800&nologo=true" alt="Latest Work" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                    <div>
+                        <p class="font-serif text-2xl font-bold">Signature Design</p>
+                        <p class="text-gray-300 mt-2">Check out our Instagram for more!</p>
                     </div>
                 </div>
             </div>
@@ -262,10 +327,16 @@
                             <label class="block text-sm font-bold text-gray-700 mb-2">Service</label>
                             <select id="service-select" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-rose focus:bg-white transition-colors">
                                 <option value="">Select a Service...</option>
-                                <option value="Gel Manicure">Gel Manicure - KES 2,500</option>
-                                <option value="Acrylic Full Set">Acrylic Full Set - KES 4,000</option>
-                                <option value="Luxury Pedicure">Luxury Pedicure - KES 3,000</option>
-                                <option value="Nail Art">Nail Art Add-on - KES 200+</option>
+                                <option value="Manicure">Manicure - KES 350</option>
+                                <option value="Pedicure">Pedicure - KES 500</option>
+                                <option value="Plain Gel">Plain Gel - KES 350</option>
+                                <option value="Nail Gel">Nail Gel - KES 600</option>
+                                <option value="Builder Gel & Tips">Builder Gel & Tips - KES 800</option>
+                                <option value="Gum Gel">Gum Gel - KES 1,800</option>
+                                <option value="Acrylic Full Set">Acrylic Full Set - KES 2,500</option>
+                                <option value="Nail Art">Additional Art - KES 50/nail</option>
+                                <option value="Lashes">Lashes - Inquire</option>
+                                <option value="Hair Appointment">Hair Appointment - Inquire</option>
                             </select>
                         </div>
 
