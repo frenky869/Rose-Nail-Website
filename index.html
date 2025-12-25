@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosee Nails | Nail Technician Booking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            pink: '#FCE7F3', // Light Pink
+                            rose: '#BE185D', // Dark Rose
+                            gold: '#D4AF37', // Gold accent
+                            dark: '#1F2937',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #BE185D;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- Navigation -->
+    <nav class="bg-white/95 backdrop-blur-sm sticky top-0 z-50 shadow-sm border-b border-brand-pink">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-serif font-bold text-brand-rose tracking-wider">Luxe Nails</a>
+            
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
+                <a href="#services" class="hover:text-brand-rose transition-colors uppercase tracking-widest">Services</a>
+                <a href="#gallery" class="hover:text-brand-rose transition-colors uppercase tracking-widest">Gallery</a>
+                <a href="#about" class="hover:text-brand-rose transition-colors uppercase tracking-widest">About</a>
+                <a href="#contact" class="hover:text-brand-rose transition-colors uppercase tracking-widest">Contact</a>
+            </div>
+
+            <a href="#book" class="bg-brand-rose text-white px-6 py-2 rounded-full font-medium hover:bg-pink-700 transition-all shadow-lg shadow-pink-200">
+                Book Now
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-[85vh] flex items-center justify-center overflow-hidden bg-brand-pink/30">
+        <!-- Decorative Background Circle -->
+        <div class="absolute -top-20 -right-20 w-96 h-96 bg-brand-pink rounded-full blur-3xl opacity-50"></div>
+        <div class="absolute -bottom-20 -left-20 w-96 h-96 bg-pink-200 rounded-full blur-3xl opacity-50"></div>
+
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12 relative z-10">
+            <div class="md:w-1/2 text-center md:text-left fade-in">
+                <span class="text-brand-rose font-bold tracking-widest text-sm uppercase mb-4 block">Premium Nail Care</span>
+                <h1 class="text-5xl md:text-7xl font-serif font-bold text-gray-900 mb-6 leading-tight">
+                    Artistry at Your <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-rose to-pink-400">Fingertips</span>
+                </h1>
+                <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-md mx-auto md:mx-0">
+                    Experience top-tier manicures, pedicures, and custom nail art in a relaxing environment. Your hands deserve the best.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#book" class="bg-gray-900 text-white px-8 py-4 rounded-none font-bold hover:bg-gray-800 transition-colors uppercase tracking-wider">
+                        Book Appointment
+                    </a>
+                    <a href="#services" class="border border-gray-900 text-gray-900 px-8 py-4 rounded-none font-bold hover:bg-gray-50 transition-colors uppercase tracking-wider">
+                        View Menu
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 relative fade-in" style="animation-delay: 0.2s;">
+                <div class="relative z-10 rounded-t-full overflow-hidden shadow-2xl border-4 border-white h-[500px] w-full max-w-md mx-auto">
+                    <img src="https://image.pollinations.ai/prompt/elegant%20woman%20showing%20beautiful%20acrylic%20nails%20with%20gold%20details%20fashion%20photography%20soft%20pink%20background?width=600&height=800&nologo=true" alt="Nail Art" class="w-full h-full object-cover">
+                </div>
+                <!-- Floating Elements -->
+                <div class="absolute top-10 -right-4 bg-white p-4 shadow-xl rounded-lg animate-bounce duration-[3000ms]">
+                    <p class="font-serif text-brand-rose text-2xl font-bold">5.0 ★</p>
+                    <p class="text-xs text-gray-500 uppercase tracking-wide">Top Rated</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-serif font-bold text-gray-900 mb-4">Our Services</h2>
+                <div class="w-16 h-1 bg-brand-rose mx-auto"></div>
+                <p class="mt-4 text-gray-500">Select a service to start your booking.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="group bg-brand-pink/10 hover:bg-brand-pink/30 p-8 rounded-2xl transition-colors cursor-pointer border border-transparent hover:border-brand-pink" onclick="selectService('Gel Manicure', 2500)">
+                    <div class="h-12 w-12 bg-brand-rose text-white rounded-full flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg>
+                    </div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold font-serif">Gel Manicure</h3>
+                        <span class="text-brand-rose font-bold">KES 2,500</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Cuticle care, shaping, and long-lasting gel polish application.</p>
+                    <button class="text-sm font-bold uppercase tracking-wider text-gray-900 group-hover:text-brand-rose transition-colors flex items-center">
+                        Book This <span class="ml-2">&rarr;</span>
+                    </button>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="group bg-brand-pink/10 hover:bg-brand-pink/30 p-8 rounded-2xl transition-colors cursor-pointer border border-transparent hover:border-brand-pink" onclick="selectService('Acrylic Full Set', 4000)">
+                    <div class="h-12 w-12 bg-brand-rose text-white rounded-full flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" /></svg>
+                    </div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold font-serif">Acrylic Full Set</h3>
+                        <span class="text-brand-rose font-bold">KES 4,000</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Extensions using high-quality acrylic powder for length and strength.</p>
+                    <button class="text-sm font-bold uppercase tracking-wider text-gray-900 group-hover:text-brand-rose transition-colors flex items-center">
+                        Book This <span class="ml-2">&rarr;</span>
+                    </button>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="group bg-brand-pink/10 hover:bg-brand-pink/30 p-8 rounded-2xl transition-colors cursor-pointer border border-transparent hover:border-brand-pink" onclick="selectService('Luxury Pedicure', 3000)">
+                    <div class="h-12 w-12 bg-brand-rose text-white rounded-full flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold font-serif">Luxury Pedicure</h3>
+                        <span class="text-brand-rose font-bold">KES 3,000</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Soak, scrub, massage, and polish. A complete treat for your feet.</p>
+                    <button class="text-sm font-bold uppercase tracking-wider text-gray-900 group-hover:text-brand-rose transition-colors flex items-center">
+                        Book This <span class="ml-2">&rarr;</span>
+                    </button>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="group bg-brand-pink/10 hover:bg-brand-pink/30 p-8 rounded-2xl transition-colors cursor-pointer border border-transparent hover:border-brand-pink" onclick="selectService('Nail Art (Per Nail)', 200)">
+                    <div class="h-12 w-12 bg-brand-rose text-white rounded-full flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                    </div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold font-serif">Nail Art Add-on</h3>
+                        <span class="text-brand-rose font-bold">KES 200+</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Custom designs, chrome powder, gems, or french tips.</p>
+                    <button class="text-sm font-bold uppercase tracking-wider text-gray-900 group-hover:text-brand-rose transition-colors flex items-center">
+                        Book This <span class="ml-2">&rarr;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-gray-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <span class="text-brand-rose font-bold tracking-widest text-sm uppercase">Portfolio</span>
+                    <h2 class="text-4xl font-serif font-bold mt-2">Latest Works</h2>
+                </div>
+                <a href="https://instagram.com" target="_blank" class="hidden md:inline-block border-b border-brand-rose pb-1 hover:text-brand-rose transition-colors">View Instagram</a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-[600px]">
+                <div class="col-span-2 row-span-2 relative group overflow-hidden rounded-lg">
+                    <img src="https://image.pollinations.ai/prompt/close%20up%20photo%20of%20elegant%20ombre%20nails%20pink%20and%20white%20salon?width=800&height=800&nologo=true" alt="Work 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <p class="font-serif text-xl">Ombre Acrylics</p>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-lg">
+                    <img src="https://image.pollinations.ai/prompt/close%20up%20photo%20of%20red%20gel%20polish%20nails%20glossy?width=400&height=400&nologo=true" alt="Work 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="relative group overflow-hidden rounded-lg">
+                    <img src="https://image.pollinations.ai/prompt/close%20up%20photo%20of%20nude%20nails%20with%20minimalist%20black%20nail%20art?width=400&height=400&nologo=true" alt="Work 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="col-span-2 relative group overflow-hidden rounded-lg">
+                    <img src="https://image.pollinations.ai/prompt/close%20up%20photo%20of%20luxury%20pedicure%20with%20white%20polish%20and%20flower%20petals%20in%20water?width=800&height=400&nologo=true" alt="Work 4" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <p class="font-serif text-xl">Spa Pedicure</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="book" class="py-24 bg-brand-pink/20">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
+                <div class="md:w-1/3 bg-brand-rose text-white p-10 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-3xl font-serif font-bold mb-4">Book Your Visit</h3>
+                        <p class="text-pink-100 mb-8">We can't wait to pamper you. Please fill out the form to request an appointment.</p>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <span class="font-bold mr-3">Mon - Fri:</span> 9:00 AM - 7:00 PM
+                            </div>
+                            <div class="flex items-center">
+                                <span class="font-bold mr-3">Saturday:</span> 10:00 AM - 6:00 PM
+                            </div>
+                            <div class="flex items-center">
+                                <span class="font-bold mr-3">Sunday:</span> Closed
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <p class="text-sm opacity-75">Deposit not required for booking.</p>
+                    </div>
+                </div>
+                
+                <div class="md:w-2/3 p-10">
+                    <form id="booking-form" onsubmit="submitBooking(event)">
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Name</label>
+                                <input type="text" id="client-name" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-rose focus:bg-white transition-colors" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Phone</label>
+                                <input type="tel" id="client-phone" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-rose focus:bg-white transition-colors" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Service</label>
+                            <select id="service-select" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-rose focus:bg-white transition-colors">
+                                <option value="">Select a Service...</option>
+                                <option value="Gel Manicure">Gel Manicure - KES 2,500</option>
+                                <option value="Acrylic Full Set">Acrylic Full Set - KES 4,000</option>
+                                <option value="Luxury Pedicure">Luxury Pedicure - KES 3,000</option>
+                                <option value="Nail Art">Nail Art Add-on - KES 200+</option>
+                            </select>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6 mb-8">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Date</label>
+                                <input type="date" id="book-date" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-rose focus:bg-white transition-colors" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Time</label>
+                                <select id="book-time" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-rose focus:bg-white transition-colors" required>
+                                    <option>09:00 AM</option>
+                                    <option>10:00 AM</option>
+                                    <option>11:00 AM</option>
+                                    <option>12:00 PM</option>
+                                    <option>01:00 PM</option>
+                                    <option>02:00 PM</option>
+                                    <option>03:00 PM</option>
+                                    <option>04:00 PM</option>
+                                    <option>05:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full bg-gray-900 text-white font-bold py-4 rounded-lg hover:bg-gray-800 transition-colors shadow-lg uppercase tracking-widest flex justify-center items-center gap-2">
+                            <span>Confirm Booking</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-900 text-gray-400 py-16">
+        <div class="container mx-auto px-6 grid md:grid-cols-3 gap-12">
+            <div>
+                <h3 class="text-2xl font-serif text-brand-rose font-bold mb-6">Luxe Nails</h3>
+                <p class="mb-4">Elevating nail care to an art form. Join us for a moment of luxury and walk out with confidence.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-wider mb-6">Location</h4>
+                <p>123 Juja</p>
+                <p>Juja, Kenya</p>
+                <p class="mt-4">JKUAT gate C</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-wider mb-6">Contact</h4>
+                <p class="flex items-center mb-2">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    +254 739 684 403
+                </p>
+                <p class="flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    book@rosenails.co.ke
+                </p>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 mt-12 pt-8 text-center text-sm">
+            <p>&copy; 2025 Rose Nails. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Confirmation Modal -->
+    <div id="success-modal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-sm text-center m-4 transform transition-all scale-100">
+            <div class="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h3 class="text-2xl font-serif font-bold text-gray-900 mb-2">Booking Received!</h3>
+            <p class="text-gray-600 mb-6">Thank you, <span id="modal-name" class="font-bold"></span>. We have received your request for <span id="modal-service" class="font-bold"></span> on <span id="modal-date"></span>.</p>
+            <p class="text-sm text-gray-500 mb-6">We will call you shortly to confirm .</p>
+            <button onclick="closeModal()" class="bg-brand-rose text-white px-8 py-3 rounded-lg font-bold hover:bg-pink-700 transition-colors w-full">Great!</button>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Pre-select service in booking form if clicked from services section
+        function selectService(serviceName) {
+            const select = document.getElementById('service-select');
+            // Try to select based on text content logic or value matches
+            for(let i=0; i<select.options.length; i++) {
+                if(select.options[i].text.includes(serviceName)) {
+                    select.selectedIndex = i;
+                    break;
+                }
+            }
+            document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Handle Booking Submission
+        function submitBooking(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('client-name').value;
+            const service = document.getElementById('service-select').options[document.getElementById('service-select').selectedIndex].text;
+            const date = document.getElementById('book-date').value;
+
+            // Populate Modal
+            document.getElementById('modal-name').innerText = name;
+            document.getElementById('modal-service').innerText = service;
+            document.getElementById('modal-date').innerText = date;
+
+            // Show Modal
+            document.getElementById('success-modal').classList.add('active');
+            
+            // Optional: Reset form
+            document.getElementById('booking-form').reset();
+        }
+
+        function closeModal() {
+            document.getElementById('success-modal').classList.remove('active');
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            const modal = document.getElementById('success-modal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
