@@ -439,23 +439,61 @@
         }
 
         // Handle Booking Submission
-        function submitBooking(e) {
+        async function submitBooking(e) {
             e.preventDefault();
             
             const name = document.getElementById('client-name').value;
-            const service = document.getElementById('service-select').options[document.getElementById('service-select').selectedIndex].text;
+            const phone = document.getElementById('client-phone').value;
+            const service = document.getElementById('service-select').value;
             const date = document.getElementById('book-date').value;
+            const time = document.getElementById('book-time').value;
 
-            // Populate Modal
-            document.getElementById('modal-name').innerText = name;
-            document.getElementById('modal-service').innerText = service;
-            document.getElementById('modal-date').innerText = date;
+            // Disable submit button to prevent double submissions
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>Processing...</span>';
 
-            // Show Modal
-            document.getElementById('success-modal').classList.add('active');
-            
-            // Optional: Reset form
-            document.getElementById('booking-form').reset();
+            try {
+                // Send booking request to backend
+                const response = await fetch('http://localhost:3000/api/bookings', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name,
+                        phone,
+                        service,
+                        date,
+                        time
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    // Success - show confirmation modal
+                    document.getElementById('modal-name').innerText = name;
+                    document.getElementById('modal-service').innerText = service;
+                    document.getElementById('modal-date').innerText = date + ' at ' + time;
+                    document.getElementById('success-modal').classList.add('active');
+                    
+                    // Reset form
+                    document.getElementById('booking-form').reset();
+                } else {
+                    // Handle error (including "Already booked" scenario)
+                    const errorMessage = data.message || data.error || 'Failed to create booking';
+                    alert(errorMessage);
+                }
+            } catch (error) {
+                console.error('Booking error:', error);
+                alert('Failed to connect to booking system. Please ensure the server is running and try again.');
+            } finally {
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
         }
 
         function closeModal() {
