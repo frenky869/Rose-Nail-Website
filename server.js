@@ -2,9 +2,24 @@ const express = require('express');
 const cors = require('cors');
 const Database = require('better-sqlite3');
 const path = require('path');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Rate limiting for API endpoints
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again later.'
+});
+
+// Stricter rate limiting for booking endpoint
+const bookingLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10, // limit each IP to 10 booking attempts per windowMs
+  message: 'Too many booking attempts, please try again later.'
+});
 
 // Initialize SQLite database
 const db = new Database('bookings.db');
@@ -26,7 +41,22 @@ db.exec(`
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static('.'));
+
+// Serve only specific static files (not entire directory)
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/index.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/nail.jpeg', (req, res) => {
+  res.sendFile(path.join(__dirname, 'nail.jpeg'));
+});
+
+// Apply rate limiting to all API routes
+app.use('/api', apiLimiter);
 
 // Check if a slot is available
 app.get('/api/check-availability', (req, res) => {
@@ -53,7 +83,7 @@ app.get('/api/check-availability', (req, res) => {
 });
 
 // Create a new booking
-app.post('/api/bookings', (req, res) => {
+app.post('/api/bookings', bookingLimiter, (req, res) => {
   const { name, phone, service, date, time } = req.body;
 
   // Validation

@@ -4,3 +4,6 @@ node_modules/
 .env
 .DS_Store
 package-lock.json
+test_race_condition.sh
+server.log
+nohup.out
