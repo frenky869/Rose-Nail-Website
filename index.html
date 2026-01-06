@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rose Nails | Nail Technician Booking</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- ========== ADD THESE 3 LINES ========== -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="supabase-functions.js"></script>
+    <!-- ====================================== -->
+    
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -16,16 +23,34 @@
                     },
                     colors: {
                         brand: {
-                            pink: '#FCE7F3', // Light Pink
-                            rose: '#BE185D', // Dark Rose
-                            gold: '#D4AF37', // Gold accent
+                            pink: '#FCE7F3',
+                            rose: '#BE185D',
+                            gold: '#D4AF37',
                             dark: '#1F2937',
                         }
                     }
                 }
             }
         }
+        
+        // ========== ADD THIS SUPABASE CONFIG ==========
+        // REPLACE WITH YOUR ACTUAL CREDENTIALS
+        const supabaseUrl = 'https://pfuvcamzqqbudrjphuyw.supabase.co';
+        const supabaseAnonKey = 'sb_publishable_1aOEJQ1iOqo5-c3mcomqcQ_uLqsuiuW';
+        
+        // Initialize Supabase
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey, {
+            auth: {
+                persistSession: false,
+                autoRefreshToken: false
+            }
+        });
+        
+        // Make available globally
+        window.supabaseClient = supabase;
+        // ==============================================
     </script>
+  
     <style>
         .fade-in {
             animation: fadeIn 0.8s ease-out;
