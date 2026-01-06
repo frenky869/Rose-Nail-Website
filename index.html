@@ -439,61 +439,203 @@
         </div>
     </div>
 
-    <script>
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+<script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
             });
         });
+    });
 
-        // Pre-select service in booking form if clicked from services section
-        function selectService(serviceName) {
-            const select = document.getElementById('service-select');
-            // Try to select based on text content logic or value matches
-            for(let i=0; i<select.options.length; i++) {
-                if(select.options[i].text.includes(serviceName)) {
-                    select.selectedIndex = i;
-                    break;
+    // Set minimum date to today when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        const dateInput = document.getElementById('book-date');
+        if (dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.min = today;
+            
+            // Pre-fill with tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            dateInput.value = tomorrow.toISOString().split('T')[0];
+        }
+        
+        // Format phone input
+        const phoneInput = document.getElementById('client-phone');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.startsWith('0')) {
+                    value = '254' + value.substring(1);
+                } else if (!value.startsWith('254')) {
+                    value = '254' + value;
                 }
-            }
-            document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+                e.target.value = value.substring(0, 12);
+            });
         }
+    });
 
-        // Handle Booking Submission
-        function submitBooking(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('client-name').value;
-            const service = document.getElementById('service-select').options[document.getElementById('service-select').selectedIndex].text;
-            const date = document.getElementById('book-date').value;
-
-            // Populate Modal
-            document.getElementById('modal-name').innerText = name;
-            document.getElementById('modal-service').innerText = service;
-            document.getElementById('modal-date').innerText = date;
-
-            // Show Modal
-            document.getElementById('success-modal').classList.add('active');
-            
-            // Optional: Reset form
-            document.getElementById('booking-form').reset();
-        }
-
-        function closeModal() {
-            document.getElementById('success-modal').classList.remove('active');
-        }
-
-        // Close modal on outside click
-        window.onclick = function(event) {
-            const modal = document.getElementById('success-modal');
-            if (event.target == modal) {
-                closeModal();
+    // Pre-select service in booking form
+    function selectService(serviceName) {
+        const select = document.getElementById('service-select');
+        for(let i = 0; i < select.options.length; i++) {
+            if(select.options[i].text.includes(serviceName)) {
+                select.selectedIndex = i;
+                break;
             }
         }
-    </script>
+        document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Handle Booking Submission with Supabase
+    async function submitBooking(e) {
+        e.preventDefault();
+        
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        
+        try {
+            // Show loading state
+            submitBtn.innerHTML = '<div class="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-white border-r-transparent"></div>';
+            submitBtn.disabled = true;
+            
+            // Collect form data
+            const formData = {
+                name: document.getElementById('client-name').value.trim(),
+                phone: document.getElementById('client-phone').value.trim(),
+                service: document.getElementById('service-select').value,
+                serviceText: document.getElementById('service-select').options[document.getElementById('service-select').selectedIndex].text,
+                date: document.getElementById('book-date').value,
+                time: document.getElementById('book-time').value
+            };
+            
+            // Validate form
+            const errors = window.supabaseFunctions.validateBookingForm(formData);
+            if (errors.length > 0) {
+                alert('Please fix the following errors:\n\n' + errors.join('\n'));
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                return;
+            }
+            
+            // Check availability
+            const availability = await window.supabaseFunctions.checkAvailability(formData.date, formData.time);
+            if (!availability.available) {
+                alert('Sorry, this time slot is already booked. Please select another time.');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                return;
+            }
+            
+            // Create appointment in Supabase
+            const appointmentData = {
+                client_name: formData.name,
+                client_phone: formData.phone,
+                service: formData.serviceText,
+                appointment_date: formData.date,
+                appointment_time: formData.time,
+                status: 'pending'
+            };
+            
+            const result = await window.supabaseFunctions.createAppointment(appointmentData);
+            
+            if (result.success) {
+                // Show success message
+                showSuccessModal(formData, result.data);
+                
+                // Optional: Send WhatsApp notification
+                sendWhatsAppNotification(formData);
+                
+                // Reset form
+                document.getElementById('booking-form').reset();
+                
+                // Set date to tomorrow again
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                document.getElementById('book-date').value = tomorrow.toISOString().split('T')[0];
+                
+                console.log('Appointment created:', result.data);
+            } else {
+                throw new Error(result.message);
+            }
+            
+        } catch (error) {
+            console.error('Booking error:', error);
+            alert(`Failed to book appointment: ${error.message}\n\nPlease try again or call us directly at +254 739 684 403.`);
+        } finally {
+            // Reset button state
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    }
+
+    // Show success modal with details
+    function showSuccessModal(formData, appointmentData) {
+        document.getElementById('modal-name').innerText = formData.name;
+        document.getElementById('modal-service').innerText = formData.serviceText.split(' - ')[0];
+        document.getElementById('modal-date').innerText = window.supabaseFunctions.formatDate(formData.date);
+        document.getElementById('modal-time').innerText = formData.time;
+        
+        // Add appointment ID if available
+        if (appointmentData && appointmentData.id) {
+            const appointmentId = appointmentData.id.substring(0, 8).toUpperCase();
+            const idElement = document.createElement('p');
+            idElement.className = 'text-sm text-gray-500 mt-2';
+            idElement.id = 'modal-id';
+            idElement.innerText = `Reference: ${appointmentId}`;
+            
+            const modalContent = document.querySelector('#success-modal .text-gray-600');
+            if (modalContent && !document.getElementById('modal-id')) {
+                modalContent.parentNode.insertBefore(idElement, modalContent.nextSibling);
+            }
+        }
+        
+        // Show modal
+        document.getElementById('success-modal').classList.add('active');
+    }
+
+    // Send WhatsApp notification (optional)
+    function sendWhatsAppNotification(formData) {
+        // Format phone for WhatsApp
+        let phone = formData.phone;
+        if (phone.startsWith('0')) {
+            phone = '254' + phone.substring(1);
+        }
+        
+        // Create message
+        const message = `New booking from Rose Nails website:%0A%0A` +
+                       `Name: ${formData.name}%0A` +
+                       `Phone: ${formData.phone}%0A` +
+                       `Service: ${formData.serviceText}%0A` +
+                       `Date: ${formData.date}%0A` +
+                       `Time: ${formData.time}%0A%0A` +
+                       `Please check Supabase dashboard for details.`;
+        
+        // Your business WhatsApp number
+        const businessNumber = '254739684403'; // Replace with your number
+        
+        // Create WhatsApp URL (for admin to click manually)
+        const whatsappUrl = `https://wa.me/${businessNumber}?text=${message}`;
+        console.log('WhatsApp notification URL:', whatsappUrl);
+        
+        // Note: This just logs the URL. To actually send, you'd need a backend service.
+        // For now, you can manually check appointments in Supabase dashboard.
+    }
+
+    function closeModal() {
+        document.getElementById('success-modal').classList.remove('active');
+    }
+
+    // Close modal on outside click
+    window.onclick = function(event) {
+        const modal = document.getElementById('success-modal');
+        if (event.target == modal) {
+            closeModal();
+        }
+    };
+</script>
 </body>
 </html>
