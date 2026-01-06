@@ -7,10 +7,8 @@
     <title>Rose Nails | Nail Technician Booking</title>
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- ========== ADD THESE 3 LINES ========== -->
+    <!-- Load Supabase FIRST -->
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-    <script src="supabase-functions.js"></script>
-    <!-- ====================================== -->
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script>
@@ -33,24 +31,61 @@
             }
         }
         
-        // ========== ADD THIS SUPABASE CONFIG ==========
-        // REPLACE WITH YOUR ACTUAL CREDENTIALS
-        const supabaseUrl = 'https://pfuvcamzqqbudrjphuyw.supabase.co';
-        const supabaseAnonKey = 'sb_publishable_1aOEJQ1iOqo5-c3mcomqcQ_uLqsuiuW';
-        
-        // Initialize Supabase
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey, {
-            auth: {
-                persistSession: false,
-                autoRefreshToken: false
+        // ========== SUPABASE CONFIG - SIMPLIFIED ==========
+        // Wait for Supabase to load
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                const supabaseUrl = 'https://pfuvcamzqqbudrjphuyw.supabase.co';
+                const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBmdXZjYW16cXFidWRyanBodXl3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzYxNjMyNDQsImV4cCI6MjA1MTczOTI0NH0.6rrXxtHph8oSNQ10o41-JoGbnfRN2a0kR3S5SUdxrF0';
+                
+                // Check if supabase library loaded
+                if (typeof supabase === 'undefined') {
+                    console.error('Supabase library not loaded!');
+                    return;
+                }
+                
+                const supabaseClient = supabase.createClient(supabaseUrl, supabaseAnonKey, {
+                    auth: { persistSession: false }
+                });
+                
+                // Make available globally
+                window.supabaseClient = supabaseClient;
+                console.log('Supabase initialized successfully!');
+                
+                // Test connection
+                testConnection();
+                
+            } catch (error) {
+                console.error('Failed to initialize Supabase:', error);
             }
         });
         
-        // Make available globally
-        window.supabaseClient = supabase;
-        // ==============================================
+        // Test connection function
+        async function testConnection() {
+            try {
+                if (!window.supabaseClient) {
+                    console.error('No supabaseClient found');
+                    return;
+                }
+                
+                // Simple test query
+                const { data, error } = await window.supabaseClient
+                    .from('appointments')
+                    .select('id')
+                    .limit(1);
+                    
+                if (error) {
+                    console.error('Supabase connection test failed:', error);
+                } else {
+                    console.log('Supabase connection successful! Database accessible.');
+                }
+            } catch (error) {
+                console.error('Connection test error:', error);
+            }
+        }
     </script>
-  
+    
+
     <style>
         .fade-in {
             animation: fadeIn 0.8s ease-out;
